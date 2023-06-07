@@ -29,14 +29,11 @@
 	<h3 class="section-title">Popular products</h3>
 </header><!-- sect-heading -->
 
-
-
-	
 <div class="row">
 	{% for product in products %}
 	<div class="col-md-3">
 		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{{  product.images.product_image_url }}" > </a>
+			<a href="./product-detail.html" class="img-wrap"> <img src="{{  product.product_image_url.url }}" >  </a>
 			<figcaption class="info-wrap">
 				<a href="./product-detail.html" class="title">{{ product.product_name }}</a>
 				<div class="price mt-1">${{ product.product_price }}</div> <!-- price-wrap.// -->
