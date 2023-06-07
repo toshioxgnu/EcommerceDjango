@@ -2,8 +2,10 @@
 
 // jquery ready start
 $(document).ready(function() {
-	// jQuery code
 
+    
+	// jQuery code
+    // alert('Hola dasssss');
 
     /* ///////////////////////////////////////
 
