@@ -3,7 +3,7 @@ from .models import Product
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'stock','category', 'created_date','modified_date','is_available')
+    list_display = ('product_name', 'product_price', 'product_stock','category', 'created_date','modified_date','is_available')
     prepolated_fields = {'slug' : ('product_name',)}
 
 
