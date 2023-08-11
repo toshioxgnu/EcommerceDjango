@@ -3,8 +3,11 @@ from carts.models import Cart, CartItem
 
 from store.models import Product
 from django.http import *
+
+import math
 # Create your views here.
 
+iva=0.19
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -43,13 +46,20 @@ def cart(request, total=0, quantity=0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.product_price * cart_item.quantity)
             quantity += cart_item.quantity
+
+        tax = (iva * total )
+        tax = round(tax,2)
+        grand_total= total + tax 
+
     except ObjecNotExist:
         pass
 
     context = { 
-        'total': total,
+        'total': round(total,2),
         'quantity': quantity,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'tax' : tax,
+        'grand_total' : round(grand_total,2),
     }
 
     return render(request, 'store/cart.html', context)
