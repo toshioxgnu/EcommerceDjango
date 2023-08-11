@@ -28,7 +28,9 @@
                       <a href="#" class="title text-dark"
                         >{{ cart_item.product.product_name }}</a
                       >
-                      <p class="text-muted small">
+                      <p class="text-muted small text-truncate"
+                        style="max-width: 200px;"
+                      >
                         {{ cart_item.product.product_description }}
                       </p>
                     </figcaption>
@@ -39,13 +41,14 @@
                   <div class="col">
                     <div class="input-group input-spinner">
                       <div class="input-group-prepend">
-                        <button
+                        <a
                           class="btn btn-light"
                           type="button"
                           id="button-plus"
+                          href="{% url 'remove_cart' cart_item.product.id %}"
                         >
                           <i class="fa fa-minus"></i>
-                        </button>
+                        </a>
                       </div>
                       <input type="text" class="form-control" value="{{ cart_item.quantity }}" />
                       <div class="input-group-append">
@@ -71,7 +74,7 @@
                   <!-- price-wrap .// -->
                 </td>
                 <td class="text-right">
-                  <a href="" class="btn btn-danger"> Remove</a>
+                  <a href="{% url 'delete_cartItem' cart_item.product.id %}" class="btn btn-danger"> Remove</a>
                 </td>
               </tr>
               {% endfor %}
