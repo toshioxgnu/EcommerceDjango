@@ -71,7 +71,11 @@
 		  Out of Stock
 		</div>
 	{% else %}
-		<a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> 
+		{% if in_cart %}
+			<a href="{% url 'cart' %}" class="btn  btn-success"> <span class="text">Added to cart</span> <i class="fas fa-check"></i> 
+		{% else %}
+			<a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> 
+		{% endif %}	
 	{% endif %}
 	 </a>
 </article> <!-- product-info-aside .// -->
