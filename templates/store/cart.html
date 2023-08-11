@@ -4,6 +4,14 @@
   <div class="container">
     <!-- ============================ COMPONENT 1 ================================= -->
 
+    {% if not cart_items %}
+      <h2> Your shopping cart is empty </h2>
+      <br>
+      <div class="tex-center">
+        <a href="{% url 'store' %}" class="btn btn-primary"> Continue Shopping </a>
+      </div>
+    {% else %}
+
     <div class="row">
       <aside class="col-lg-9">
         <div class="card">
@@ -25,7 +33,7 @@
                       <img src="{{ cart_item.product.product_image_url.url }}" class="img-sm" />
                     </div>
                     <figcaption class="info">
-                      <a href="#" class="title text-dark"
+                      <a href="{{ cart_item.product.get_url }}" class="title text-dark"
                         >{{ cart_item.product.product_name }}</a
                       >
                       <p class="text-muted small text-truncate"
@@ -116,6 +124,8 @@
       </aside>
       <!-- col.// -->
     </div>
+
+    {% endif  %}
     <!-- row.// -->
     <!-- ============================ COMPONENT 1 END .// ================================= -->
   </div>
