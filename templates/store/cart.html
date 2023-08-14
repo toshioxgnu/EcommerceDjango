@@ -45,7 +45,7 @@
                       >
                         {% if cart_item.variations.all %}
                           {% for variation in cart_item.variations.all %}
-                            {{ variation.variation_category }} : {{ variation.variation_value }}
+                            {{ variation.variation_category | capfirst }} : {{ variation.variation_value | capfirst}} <br>
                           {% endfor %}
                         {% endif %}
                       </p>
