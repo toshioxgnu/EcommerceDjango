@@ -19,8 +19,8 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
-    color = request.GET['radio_color']
-    size = request.GET['radio_size']
+    color = request.POST['radio_color']
+    size = request.POST['radio_size']
 
     product = Product.objects.get(id=product_id)
     try:
