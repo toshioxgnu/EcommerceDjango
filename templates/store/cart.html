@@ -41,6 +41,14 @@
                       >
                         {{ cart_item.product.product_description }}
                       </p>
+                      <p class="text-muted small"
+                      >
+                        {% if cart_item.variations.all %}
+                          {% for variation in cart_item.variations.all %}
+                            {{ variation.variation_category }} : {{ variation.variation_value }}
+                          {% endfor %}
+                        {% endif %}
+                      </p>
                     </figcaption>
                   </figure>
                 </td>
