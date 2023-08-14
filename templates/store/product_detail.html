@@ -33,9 +33,11 @@
 			<div class="item-option-select">
 				<h6>Choose Color</h6>
 				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-				  <label class="btn btn-light">
-					<input type="radio" name="radio_color" value="Silver"> Silver
-				  </label>
+					{% for variation in single_product.variation_set.colors %}
+						<label class="btn btn-light">
+							<input type="radio" name="radio_color" value="{{ variation.variation_value }}" required> {{ variation.variation_value }}
+						</label>
+				  {% endfor %}
 				</div>
 			</div>
 		</div> <!-- row.// -->
@@ -43,9 +45,11 @@
 			<div class="item-option-select">
 				<h6>Select Size</h6>
 				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+					{% for i in single_product.variation_set.sizes %}
 				  <label class="btn btn-light">
-					<input type="radio" name="radio_size" value="S"> S
+					<input type="radio" name="radio_size" value="{{ i.variation_value }}" required> {{ i.variation_value }}
 				  </label>
+				  {%endfor%}
 				</div>
 			</div>
 		</div> <!-- row.// -->
