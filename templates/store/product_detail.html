@@ -36,7 +36,7 @@
 				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
 					{% for variation in single_product.variation_set.colors %}
 						<label class="btn btn-light">
-							<input type="radio" name="radio_color" value="{{ variation.variation_value }}" required> {{ variation.variation_value }}
+							<input type="radio" name="color" value="{{ variation.variation_value }}" required> {{ variation.variation_value }}
 						</label>
 				  {% endfor %}
 				</div>
@@ -48,7 +48,7 @@
 				<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
 					{% for i in single_product.variation_set.sizes %}
 				  <label class="btn btn-light">
-					<input type="radio" name="radio_size" value="{{ i.variation_value }}" required> {{ i.variation_value }}
+					<input type="radio" name="size" value="{{ i.variation_value }}" required> {{ i.variation_value }}
 				  </label>
 				  {%endfor%}
 				</div>
