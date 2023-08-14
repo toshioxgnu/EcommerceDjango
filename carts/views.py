@@ -19,6 +19,9 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
+    color = request.GET['radio_color']
+    size = request.GET['radio_size']
+
     product = Product.objects.get(id=product_id)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
@@ -62,7 +65,8 @@ def delete_cartItem(request, product_id):
     return redirect('cart')
 
 
-def cart(request, total=0, quantity=0, cart_items=None):
+def cart(request, total=0, quantity=0, cart_items=None):    
+
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, is_active=True)
