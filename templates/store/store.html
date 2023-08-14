@@ -152,6 +152,8 @@
           </div>
         </header>
 
+        {% if products  %}
+
         <!-- sect-heading -->
         <div class="row">
           {% for product in products %}
@@ -181,6 +183,16 @@
           </div>
           <!-- col.// -->
           {% endfor %}
+          {% else %}
+
+          <div>
+            {% comment %} alert for no products found {% endcomment %}
+            <div class="alert alert-warning">
+              <h3>No Products Found</h3>
+              
+          </div>
+
+          {%endif%}
         </div>
         <!-- row end.// -->
 
