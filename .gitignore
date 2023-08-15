@@ -5,6 +5,7 @@
 __pycache__
 db.sqlite3
 media
+/home/jgonzalez/EcommerceDjango/ecommerce/settings.py
 
 # Backup files # 
 *.bak 
