@@ -20,8 +20,8 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
 
-    product_variation = []
     product = Product.objects.get(id=product_id)
+    product_variation = []
 
     if request.method == 'POST':
         for item in request.POST:
@@ -56,7 +56,7 @@ def add_cart(request, product_id):
         if product_variation in ex_var_list:
             # increase the cart item quantity 
             index = ex_var_list.index(product_variation)
-            CartItem.objects.get(product=product, id=id[index])
+            item = CartItem.objects.get(product=product, id=id[index])
             item.quantity += 1
             item.save()
 
