@@ -1,7 +1,9 @@
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
@@ -38,9 +40,9 @@ def register(request):
             mail_subject = 'Please activate your account'
             message = render_to_string('accounts/accountVerificactionEmail.html', {
                 'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_b64encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user)
+                'domain': current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user)
             })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
@@ -78,4 +80,23 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are Logout')
-    return redirect(request, 'login')
+    return redirect('login')
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, 'Your account has been activated')
+        return redirect('login')
+    else:
+        messages.error(request, 'Invalid activation link')
+        return redirect('register')
+    
+    return HttpResponse('OK')
