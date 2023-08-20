@@ -136,3 +136,8 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# add Email password and email username variables values 
+EMAIL_HOST_PASSWORD = '@PanConPalta15963'
+EMAIL_HOST_USER = 'jozho.g@gmail.com'
+```
