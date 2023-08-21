@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
@@ -48,8 +47,8 @@ def register(request):
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.success(request, 'Registration Succesfull')
-            return redirect('register')
+            # messages.success(request, 'Thank you for registering with us. We have sent you a verification email to your email. Please check. ')
+            return redirect('/accounts/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()
     context = {
@@ -75,7 +74,7 @@ def login(request):
 
     return render(request, 'accounts/login.html')
 
-
+ 
 @login_required(login_url='login')
 def logout(request):
     auth.logout(request)
@@ -98,5 +97,3 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
-    
-    return HttpResponse('OK')
