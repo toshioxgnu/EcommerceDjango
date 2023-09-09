@@ -126,7 +126,7 @@ def forgotPassword(request):
             send_email.send()
 
             messages.success(request, 'Password reset email has been sent to your email addres. Please check. ')
-            return redirect('/accounts/login')
+            return redirect('login')
 
         else:
             messages.error(request, 'Account does not exist')
