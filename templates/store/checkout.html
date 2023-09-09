@@ -7,8 +7,9 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Billing Address</h4>
-            <form action="">
+            <form action="" method="POST" >
               <div class="form-row">
+                {% csrf_token %}
                 <div class="col form-group">
                   <label>First name</label>
                   <input
@@ -80,7 +81,7 @@
                   class="form-control"
                 ></textarea>
               </div>
-            </form>
+            
           </div>
         </div>
         <!-- card.// -->
@@ -187,14 +188,17 @@
                 <!-- card.// -->
               </aside>
 
+            
+
             <div style="padding-top:15px;">
-                <a href="./place-order.html" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block">
                     Place Order
-                </a>
-                <a href="{% url 'store' %}" class="btn btn-light btn-block"
-                >Ceckout</a
+                </button>
+                <button href="{% url 'store' %}" class="btn btn-light btn-block"
+                >Ceckout</
                 >
             </div>
+          </form>
 
             
           </div>

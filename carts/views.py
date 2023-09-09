@@ -1,10 +1,12 @@
-from django.shortcuts import redirect, render, get_object_or_404
-from carts.models import Cart, CartItem
-
-from store.models import Product, Variation
-from django.http import *
-
 import math
+
+from django.contrib.auth.decorators import login_required
+from django.http import *
+from django.shortcuts import get_object_or_404, redirect, render
+
+from carts.models import Cart, CartItem
+from store.models import Product, Variation
+
 # Create your views here.
 
 iva = 0.19
@@ -137,7 +139,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
 
     return render(request, 'store/cart.html', context)
 
-
+@login_required
 def checkout(request, total=0, quantity=0, cart_items=None):
 
     try:
