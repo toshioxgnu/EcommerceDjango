@@ -1,3 +1,4 @@
+import requests
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.tokens import default_token_generator
@@ -102,16 +103,21 @@ def login(request):
                             for item in cart_item:
                                 item.user = user
                                 item.save()
-                    # for item in cart_item:
-                    #     item.user = user
-                    #     item.save()
             except:
                 pass
 
-
             auth.login(request, user)
             messages.success(request, 'Your are now loggin in.')
-            return redirect('dashboard')
+            url = request.META.get('HTTP_REFERER')
+            try:
+                query = requests.utils.urlparse(url).query
+                params = dict(x.split('=') for x in query.split('&'))
+                if 'next' in params:
+                    nextPage = params['next']
+                    return redirect(nextPage)
+                
+            except:
+                return redirect('dashboard')
         else:
             messages.error(request, 'Invalid login credentials')
             return redirect('login')

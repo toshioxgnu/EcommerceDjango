@@ -1,12 +1,16 @@
 asgiref==3.7.2
 beautifulsoup4==4.12.2
+certifi==2023.7.22
 cffi==1.15.1
+charset-normalizer==3.2.0
 cryptography==41.0.1
 Django==4.2.1
 django-livereload-server==0.4
+idna==3.4
 Pillow==9.5.0
 pycparser==2.21
 PyMySQL==1.0.3
+requests==2.31.0
 six==1.16.0
 soupsieve==2.4.1
 sqlparse==0.4.4
