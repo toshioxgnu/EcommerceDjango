@@ -88,7 +88,7 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ECOMMERCE',
+        'NAME': 'ecommerce',
         'USER': 'developer',
         'PASSWORD': 'Lkl15963',
         'HOST': 'localhost',
