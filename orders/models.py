@@ -52,6 +52,14 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def full_name(self):
+        """ Returns the full name of the user """
+        return f'{self.first_name} {self.last_name}'
+    
+    def full_address(self):
+        """ Returns the full addres of the user """
+        return f'{self.address} ; {self.address2}'
+
 
 
     def __str__(self):

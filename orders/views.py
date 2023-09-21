@@ -1,5 +1,6 @@
 
-from django.shortcuts import redirect
+import django.http
+from django.shortcuts import redirect, render
 from carts.models import CartItem
 from orders.forms import OrderForm
 import datetime
@@ -7,6 +8,8 @@ from .models import Order
 
 # Create your views here.
 
+def payments(request):
+    return render(request, 'orders/payments.html')
 
 def place_order(request, total=0, quantity=0):
 
@@ -58,7 +61,16 @@ def place_order(request, total=0, quantity=0):
             data.order_number = order_number
             data.save()
 
+            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+            context = {
+                'order' : order,
+                'cart_items': cart_items,
+                'total': total,
+                'tax' : tax,
+                'grand_total': grand_total,
+            }
+
             # Order Complete
-            return redirect('checkout')
+            return render(request, 'orders/payments.html', context=context)
     else:
         return redirect('checkout')
