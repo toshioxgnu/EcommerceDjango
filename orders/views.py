@@ -1,9 +1,9 @@
-import datetime
 
 from django.shortcuts import redirect
 from carts.models import CartItem
 from orders.forms import OrderForm
-from orders.models import Order
+import datetime
+from .models import Order
 
 # Create your views here.
 
@@ -30,7 +30,7 @@ def place_order(request, total=0, quantity=0):
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
-        if (form.is_valid()):
+        if form.is_valid():
             data = Order()
             data.user = current_user
             data.first_name = form.cleaned_data['first_name']
@@ -43,7 +43,6 @@ def place_order(request, total=0, quantity=0):
             data.state = form.cleaned_data['state']
             data.city = form.cleaned_data['city']
             data.order_note = form.cleaned_data['order_note']
-            data.user = current_user.id
             data.ip = request.META.get('REMOTE_ADDR')
             data.tax= tax
             data.order_total = grand_total
@@ -58,11 +57,8 @@ def place_order(request, total=0, quantity=0):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
-            print('[Guardando orden]', order_number)
 
             # Order Complete
             return redirect('checkout')
     else:
         return redirect('checkout')
-    
-
