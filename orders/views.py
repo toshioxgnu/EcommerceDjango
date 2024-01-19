@@ -125,3 +125,10 @@ def capture_payment(request):
         return redirect('store')
 
     
+def payment_success(request):
+    return render(request, 'orders/payment_success.html')
+
+def payment_failed(request):
+    return render(request, 'orders/payment_failed.html')
+
+    

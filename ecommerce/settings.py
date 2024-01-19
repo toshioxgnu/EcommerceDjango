@@ -32,6 +32,12 @@ ALLOWED_HOSTS = ['*']
 PAYPAL_CLIENT_ID='AU4MJtMVCiwc53QrN2d9H78qTRImbPpEiKdvkaU28-tK2CbHrVVjFlOB4Wbr8TLy7TdKcpbTd7pUQT9i'
 PAYPAL_SECRET_KEY='AU4MJtMVCiwc53QrN2d9H78qTRImbPpEiKdvkaU28-tK2CbHrVVjFlOB4Wbr8TLy7TdKcpbTd7pUQT9i'
 
+
+WEBPAY_URL = 'https://webpay3gint.transbank.cl'
+WEBPAY_KEY = '597055555532'
+WEBPAY_SECRET_KEY = '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -92,9 +98,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecommerce',
-        'USER': 'developer',
-        'PASSWORD': 'Lkl15963',
-        'HOST': 'localhost',
+        'USER': 'admin',
+        'PASSWORD': 'SzV89E!!N^',
+        'HOST': '198.244.201.119',
         'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
